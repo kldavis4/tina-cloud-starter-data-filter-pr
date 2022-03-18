@@ -417,6 +417,11 @@ export default defineSchema({
           },
         },
         {
+          type: "number",
+          label: "Rating",
+          name: "rating",
+        },
+        {
           type: "rich-text",
           label: "Body",
           name: "_body",
