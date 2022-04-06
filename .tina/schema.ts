@@ -1,6 +1,7 @@
 import { defineSchema, defineConfig } from "tinacms";
 import type { TinaTemplate, TinaField } from "tinacms";
 
+
 const iconSchema: TinaField = {
   type: "object",
   label: "Icon",
