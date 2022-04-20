@@ -59,6 +59,59 @@ type Query {
   getPagesList(before: String, after: String, first: Float, last: Float, sort: String, filter: PagesFilter): PagesConnection!
 }
 
+input DocumentFilter {
+  posts: PostsFilter
+  global: GlobalFilter
+  authors: AuthorsFilter
+  pages: PagesFilter
+}
+
+type DocumentConnectionEdges {
+  cursor: String
+  node: DocumentNode
+}
+
+type DocumentConnection implements Connection {
+  pageInfo: PageInfo
+  totalCount: Float!
+  edges: [DocumentConnectionEdges]
+}
+
+type Collection {
+  name: String!
+  slug: String!
+  label: String
+  path: String!
+  format: String
+  matches: String
+  templates: [JSON]
+  fields: [JSON]
+  documents(before: String, after: String, first: Float, last: Float, sort: String, filter: DocumentFilter): DocumentConnection!
+}
+
+union DocumentNode = PostsDocument | GlobalDocument | AuthorsDocument | PagesDocument
+
+union PostsAuthorDocument = AuthorsDocument
+
+type Posts {
+  title: String
+  heroImg: String
+  excerpt: JSON
+  author: PostsAuthorDocument
+  date: String
+  rating: Float
+  _body: JSON
+}
+
+type PostsDocument implements Node & Document {
+  id: ID!
+  sys: SystemInfo!
+  data: Posts!
+  form: JSON!
+  values: JSON!
+  dataJSON: JSON!
+}
+
 input StringFilter {
   startsWith: String
   eq: String
@@ -77,11 +130,6 @@ input RichTextFilter {
   startsWith: String
   eq: String
   exists: Boolean
-}
-
-input AuthorsFilter {
-  name: StringFilter
-  avatar: StringFilter
 }
 
 input PostsAuthorFilter {
@@ -136,166 +184,6 @@ input PostsFilter {
   date: DatetimeFilter
   rating: NumberFilter
   _body: Posts_bodyFilter
-}
-
-input GlobalHeaderIconFilter {
-  color: StringFilter
-  style: StringFilter
-  name: StringFilter
-}
-
-input GlobalHeaderNavFilter {
-  href: StringFilter
-  label: StringFilter
-}
-
-input GlobalHeaderFilter {
-  icon: GlobalHeaderIconFilter
-  color: StringFilter
-  nav: GlobalHeaderNavFilter
-}
-
-input GlobalFooterSocialFilter {
-  facebook: StringFilter
-  twitter: StringFilter
-  instagram: StringFilter
-  github: StringFilter
-}
-
-input GlobalFooterFilter {
-  color: StringFilter
-  social: GlobalFooterSocialFilter
-}
-
-input GlobalThemeFilter {
-  color: StringFilter
-  font: StringFilter
-  icon: StringFilter
-  darkMode: StringFilter
-}
-
-input GlobalFilter {
-  header: GlobalHeaderFilter
-  footer: GlobalFooterFilter
-  theme: GlobalThemeFilter
-}
-
-input BooleanFilter {
-  eq: Boolean
-  exists: Boolean
-}
-
-input PagesBlocksHeroActionsFilter {
-  label: StringFilter
-  type: StringFilter
-  icon: BooleanFilter
-  link: StringFilter
-}
-
-input PagesBlocksHeroImageFilter {
-  src: ImageFilter
-  alt: StringFilter
-}
-
-input PagesBlocksHeroFilter {
-  tagline: StringFilter
-  headline: StringFilter
-  text: RichTextFilter
-  actions: PagesBlocksHeroActionsFilter
-  image: PagesBlocksHeroImageFilter
-  color: StringFilter
-}
-
-input PagesBlocksFeaturesItemsIconFilter {
-  color: StringFilter
-  style: StringFilter
-  name: StringFilter
-}
-
-input PagesBlocksFeaturesItemsFilter {
-  icon: PagesBlocksFeaturesItemsIconFilter
-  title: StringFilter
-  text: StringFilter
-}
-
-input PagesBlocksFeaturesFilter {
-  items: PagesBlocksFeaturesItemsFilter
-  color: StringFilter
-}
-
-input PagesBlocksContentFilter {
-  body: RichTextFilter
-  color: StringFilter
-}
-
-input PagesBlocksTestimonialFilter {
-  quote: StringFilter
-  author: StringFilter
-  color: StringFilter
-}
-
-input PagesBlocksFilter {
-  hero: PagesBlocksHeroFilter
-  features: PagesBlocksFeaturesFilter
-  content: PagesBlocksContentFilter
-  testimonial: PagesBlocksTestimonialFilter
-}
-
-input PagesFilter {
-  blocks: PagesBlocksFilter
-}
-
-input DocumentFilter {
-  posts: PostsFilter
-  global: GlobalFilter
-  authors: AuthorsFilter
-  pages: PagesFilter
-}
-
-type DocumentConnectionEdges {
-  cursor: String
-  node: DocumentNode
-}
-
-type DocumentConnection implements Connection {
-  pageInfo: PageInfo
-  totalCount: Float!
-  edges: [DocumentConnectionEdges]
-}
-
-type Collection {
-  name: String!
-  slug: String!
-  label: String
-  path: String!
-  format: String
-  matches: String
-  templates: [JSON]
-  fields: [JSON]
-  documents(before: String, after: String, first: Float, last: Float, sort: String, filter: DocumentFilter): DocumentConnection!
-}
-
-union DocumentNode = PostsDocument | GlobalDocument | AuthorsDocument | PagesDocument
-
-union PostsAuthorDocument = AuthorsDocument
-
-type Posts {
-  title: String
-  heroImg: String
-  excerpt: JSON
-  author: PostsAuthorDocument
-  date: String
-  rating: Float
-  _body: JSON
-}
-
-type PostsDocument implements Node & Document {
-  id: ID!
-  sys: SystemInfo!
-  data: Posts!
-  form: JSON!
-  values: JSON!
-  dataJSON: JSON!
 }
 
 type PostsConnectionEdges {
@@ -360,6 +248,48 @@ type GlobalDocument implements Node & Document {
   dataJSON: JSON!
 }
 
+input GlobalHeaderIconFilter {
+  color: StringFilter
+  style: StringFilter
+  name: StringFilter
+}
+
+input GlobalHeaderNavFilter {
+  href: StringFilter
+  label: StringFilter
+}
+
+input GlobalHeaderFilter {
+  icon: GlobalHeaderIconFilter
+  color: StringFilter
+  nav: GlobalHeaderNavFilter
+}
+
+input GlobalFooterSocialFilter {
+  facebook: StringFilter
+  twitter: StringFilter
+  instagram: StringFilter
+  github: StringFilter
+}
+
+input GlobalFooterFilter {
+  color: StringFilter
+  social: GlobalFooterSocialFilter
+}
+
+input GlobalThemeFilter {
+  color: StringFilter
+  font: StringFilter
+  icon: StringFilter
+  darkMode: StringFilter
+}
+
+input GlobalFilter {
+  header: GlobalHeaderFilter
+  footer: GlobalFooterFilter
+  theme: GlobalThemeFilter
+}
+
 type GlobalConnectionEdges {
   cursor: String
   node: GlobalDocument
@@ -383,6 +313,11 @@ type AuthorsDocument implements Node & Document {
   form: JSON!
   values: JSON!
   dataJSON: JSON!
+}
+
+input AuthorsFilter {
+  name: StringFilter
+  avatar: StringFilter
 }
 
 type AuthorsConnectionEdges {
@@ -460,6 +395,71 @@ type PagesDocument implements Node & Document {
   dataJSON: JSON!
 }
 
+input BooleanFilter {
+  eq: Boolean
+  exists: Boolean
+}
+
+input PagesBlocksHeroActionsFilter {
+  label: StringFilter
+  type: StringFilter
+  icon: BooleanFilter
+  link: StringFilter
+}
+
+input PagesBlocksHeroImageFilter {
+  src: ImageFilter
+  alt: StringFilter
+}
+
+input PagesBlocksHeroFilter {
+  tagline: StringFilter
+  headline: StringFilter
+  text: RichTextFilter
+  actions: PagesBlocksHeroActionsFilter
+  image: PagesBlocksHeroImageFilter
+  color: StringFilter
+}
+
+input PagesBlocksFeaturesItemsIconFilter {
+  color: StringFilter
+  style: StringFilter
+  name: StringFilter
+}
+
+input PagesBlocksFeaturesItemsFilter {
+  icon: PagesBlocksFeaturesItemsIconFilter
+  title: StringFilter
+  text: StringFilter
+}
+
+input PagesBlocksFeaturesFilter {
+  items: PagesBlocksFeaturesItemsFilter
+  color: StringFilter
+}
+
+input PagesBlocksContentFilter {
+  body: RichTextFilter
+  color: StringFilter
+}
+
+input PagesBlocksTestimonialFilter {
+  quote: StringFilter
+  author: StringFilter
+  color: StringFilter
+}
+
+input PagesBlocksFilter {
+  hero: PagesBlocksHeroFilter
+  features: PagesBlocksFeaturesFilter
+  content: PagesBlocksContentFilter
+  testimonial: PagesBlocksTestimonialFilter
+}
+
+input PagesFilter {
+  blocks: PagesBlocksFilter
+}
+
 type PagesConnectionEdges {
   cursor: String
   node: PagesDocument
@@ -474,6 +474,7 @@ type PagesConnection implements Connection {
 type Mutation {
   addPendingDocument(collection: String!, relativePath: String!, template: String): DocumentNode!
   updateDocument(collection: String, relativePath: String!, params: DocumentMutation!): DocumentNode!
+  deleteDocument(collection: String, relativePath: String!): DocumentNode!
   createDocument(collection: String, relativePath: String!, params: DocumentMutation!): DocumentNode!
   updatePostsDocument(relativePath: String!, params: PostsMutation!): PostsDocument!
   createPostsDocument(relativePath: String!, params: PostsMutation!): PostsDocument!

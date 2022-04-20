@@ -169,192 +169,6 @@ export type QueryGetPagesListArgs = {
   filter?: InputMaybe<PagesFilter>;
 };
 
-export type StringFilter = {
-  startsWith?: InputMaybe<Scalars['String']>;
-  eq?: InputMaybe<Scalars['String']>;
-  exists?: InputMaybe<Scalars['Boolean']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-};
-
-export type ImageFilter = {
-  startsWith?: InputMaybe<Scalars['String']>;
-  eq?: InputMaybe<Scalars['String']>;
-  exists?: InputMaybe<Scalars['Boolean']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-};
-
-export type RichTextFilter = {
-  startsWith?: InputMaybe<Scalars['String']>;
-  eq?: InputMaybe<Scalars['String']>;
-  exists?: InputMaybe<Scalars['Boolean']>;
-};
-
-export type AuthorsFilter = {
-  name?: InputMaybe<StringFilter>;
-  avatar?: InputMaybe<StringFilter>;
-};
-
-export type PostsAuthorFilter = {
-  authors?: InputMaybe<AuthorsFilter>;
-};
-
-export type DatetimeFilter = {
-  after?: InputMaybe<Scalars['String']>;
-  before?: InputMaybe<Scalars['String']>;
-  eq?: InputMaybe<Scalars['String']>;
-  exists?: InputMaybe<Scalars['Boolean']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-};
-
-export type NumberFilter = {
-  lt?: InputMaybe<Scalars['Float']>;
-  lte?: InputMaybe<Scalars['Float']>;
-  gte?: InputMaybe<Scalars['Float']>;
-  gt?: InputMaybe<Scalars['Float']>;
-  eq?: InputMaybe<Scalars['Float']>;
-  exists?: InputMaybe<Scalars['Boolean']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['Float']>>>;
-};
-
-export type Posts_BodyDateTimeFilter = {
-  format?: InputMaybe<StringFilter>;
-};
-
-export type Posts_BodyBlockQuoteFilter = {
-  children?: InputMaybe<RichTextFilter>;
-  authorName?: InputMaybe<StringFilter>;
-};
-
-export type Posts_BodyNewsletterSignupFilter = {
-  children?: InputMaybe<RichTextFilter>;
-  placeholder?: InputMaybe<StringFilter>;
-  buttonText?: InputMaybe<StringFilter>;
-  disclaimer?: InputMaybe<RichTextFilter>;
-};
-
-export type Posts_BodyFilter = {
-  DateTime?: InputMaybe<Posts_BodyDateTimeFilter>;
-  BlockQuote?: InputMaybe<Posts_BodyBlockQuoteFilter>;
-  NewsletterSignup?: InputMaybe<Posts_BodyNewsletterSignupFilter>;
-};
-
-export type PostsFilter = {
-  title?: InputMaybe<StringFilter>;
-  heroImg?: InputMaybe<ImageFilter>;
-  excerpt?: InputMaybe<RichTextFilter>;
-  author?: InputMaybe<PostsAuthorFilter>;
-  date?: InputMaybe<DatetimeFilter>;
-  rating?: InputMaybe<NumberFilter>;
-  _body?: InputMaybe<Posts_BodyFilter>;
-};
-
-export type GlobalHeaderIconFilter = {
-  color?: InputMaybe<StringFilter>;
-  style?: InputMaybe<StringFilter>;
-  name?: InputMaybe<StringFilter>;
-};
-
-export type GlobalHeaderNavFilter = {
-  href?: InputMaybe<StringFilter>;
-  label?: InputMaybe<StringFilter>;
-};
-
-export type GlobalHeaderFilter = {
-  icon?: InputMaybe<GlobalHeaderIconFilter>;
-  color?: InputMaybe<StringFilter>;
-  nav?: InputMaybe<GlobalHeaderNavFilter>;
-};
-
-export type GlobalFooterSocialFilter = {
-  facebook?: InputMaybe<StringFilter>;
-  twitter?: InputMaybe<StringFilter>;
-  instagram?: InputMaybe<StringFilter>;
-  github?: InputMaybe<StringFilter>;
-};
-
-export type GlobalFooterFilter = {
-  color?: InputMaybe<StringFilter>;
-  social?: InputMaybe<GlobalFooterSocialFilter>;
-};
-
-export type GlobalThemeFilter = {
-  color?: InputMaybe<StringFilter>;
-  font?: InputMaybe<StringFilter>;
-  icon?: InputMaybe<StringFilter>;
-  darkMode?: InputMaybe<StringFilter>;
-};
-
-export type GlobalFilter = {
-  header?: InputMaybe<GlobalHeaderFilter>;
-  footer?: InputMaybe<GlobalFooterFilter>;
-  theme?: InputMaybe<GlobalThemeFilter>;
-};
-
-export type BooleanFilter = {
-  eq?: InputMaybe<Scalars['Boolean']>;
-  exists?: InputMaybe<Scalars['Boolean']>;
-};
-
-export type PagesBlocksHeroActionsFilter = {
-  label?: InputMaybe<StringFilter>;
-  type?: InputMaybe<StringFilter>;
-  icon?: InputMaybe<BooleanFilter>;
-  link?: InputMaybe<StringFilter>;
-};
-
-export type PagesBlocksHeroImageFilter = {
-  src?: InputMaybe<ImageFilter>;
-  alt?: InputMaybe<StringFilter>;
-};
-
-export type PagesBlocksHeroFilter = {
-  tagline?: InputMaybe<StringFilter>;
-  headline?: InputMaybe<StringFilter>;
-  text?: InputMaybe<RichTextFilter>;
-  actions?: InputMaybe<PagesBlocksHeroActionsFilter>;
-  image?: InputMaybe<PagesBlocksHeroImageFilter>;
-  color?: InputMaybe<StringFilter>;
-};
-
-export type PagesBlocksFeaturesItemsIconFilter = {
-  color?: InputMaybe<StringFilter>;
-  style?: InputMaybe<StringFilter>;
-  name?: InputMaybe<StringFilter>;
-};
-
-export type PagesBlocksFeaturesItemsFilter = {
-  icon?: InputMaybe<PagesBlocksFeaturesItemsIconFilter>;
-  title?: InputMaybe<StringFilter>;
-  text?: InputMaybe<StringFilter>;
-};
-
-export type PagesBlocksFeaturesFilter = {
-  items?: InputMaybe<PagesBlocksFeaturesItemsFilter>;
-  color?: InputMaybe<StringFilter>;
-};
-
-export type PagesBlocksContentFilter = {
-  body?: InputMaybe<RichTextFilter>;
-  color?: InputMaybe<StringFilter>;
-};
-
-export type PagesBlocksTestimonialFilter = {
-  quote?: InputMaybe<StringFilter>;
-  author?: InputMaybe<StringFilter>;
-  color?: InputMaybe<StringFilter>;
-};
-
-export type PagesBlocksFilter = {
-  hero?: InputMaybe<PagesBlocksHeroFilter>;
-  features?: InputMaybe<PagesBlocksFeaturesFilter>;
-  content?: InputMaybe<PagesBlocksContentFilter>;
-  testimonial?: InputMaybe<PagesBlocksTestimonialFilter>;
-};
-
-export type PagesFilter = {
-  blocks?: InputMaybe<PagesBlocksFilter>;
-};
-
 export type DocumentFilter = {
   posts?: InputMaybe<PostsFilter>;
   global?: InputMaybe<GlobalFilter>;
@@ -421,6 +235,80 @@ export type PostsDocument = Node & Document & {
   form: Scalars['JSON'];
   values: Scalars['JSON'];
   dataJSON: Scalars['JSON'];
+};
+
+export type StringFilter = {
+  startsWith?: InputMaybe<Scalars['String']>;
+  eq?: InputMaybe<Scalars['String']>;
+  exists?: InputMaybe<Scalars['Boolean']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type ImageFilter = {
+  startsWith?: InputMaybe<Scalars['String']>;
+  eq?: InputMaybe<Scalars['String']>;
+  exists?: InputMaybe<Scalars['Boolean']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type RichTextFilter = {
+  startsWith?: InputMaybe<Scalars['String']>;
+  eq?: InputMaybe<Scalars['String']>;
+  exists?: InputMaybe<Scalars['Boolean']>;
+};
+
+export type PostsAuthorFilter = {
+  authors?: InputMaybe<AuthorsFilter>;
+};
+
+export type DatetimeFilter = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  eq?: InputMaybe<Scalars['String']>;
+  exists?: InputMaybe<Scalars['Boolean']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type NumberFilter = {
+  lt?: InputMaybe<Scalars['Float']>;
+  lte?: InputMaybe<Scalars['Float']>;
+  gte?: InputMaybe<Scalars['Float']>;
+  gt?: InputMaybe<Scalars['Float']>;
+  eq?: InputMaybe<Scalars['Float']>;
+  exists?: InputMaybe<Scalars['Boolean']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['Float']>>>;
+};
+
+export type Posts_BodyDateTimeFilter = {
+  format?: InputMaybe<StringFilter>;
+};
+
+export type Posts_BodyBlockQuoteFilter = {
+  children?: InputMaybe<RichTextFilter>;
+  authorName?: InputMaybe<StringFilter>;
+};
+
+export type Posts_BodyNewsletterSignupFilter = {
+  children?: InputMaybe<RichTextFilter>;
+  placeholder?: InputMaybe<StringFilter>;
+  buttonText?: InputMaybe<StringFilter>;
+  disclaimer?: InputMaybe<RichTextFilter>;
+};
+
+export type Posts_BodyFilter = {
+  DateTime?: InputMaybe<Posts_BodyDateTimeFilter>;
+  BlockQuote?: InputMaybe<Posts_BodyBlockQuoteFilter>;
+  NewsletterSignup?: InputMaybe<Posts_BodyNewsletterSignupFilter>;
+};
+
+export type PostsFilter = {
+  title?: InputMaybe<StringFilter>;
+  heroImg?: InputMaybe<ImageFilter>;
+  excerpt?: InputMaybe<RichTextFilter>;
+  author?: InputMaybe<PostsAuthorFilter>;
+  date?: InputMaybe<DatetimeFilter>;
+  rating?: InputMaybe<NumberFilter>;
+  _body?: InputMaybe<Posts_BodyFilter>;
 };
 
 export type PostsConnectionEdges = {
@@ -495,6 +383,48 @@ export type GlobalDocument = Node & Document & {
   dataJSON: Scalars['JSON'];
 };
 
+export type GlobalHeaderIconFilter = {
+  color?: InputMaybe<StringFilter>;
+  style?: InputMaybe<StringFilter>;
+  name?: InputMaybe<StringFilter>;
+};
+
+export type GlobalHeaderNavFilter = {
+  href?: InputMaybe<StringFilter>;
+  label?: InputMaybe<StringFilter>;
+};
+
+export type GlobalHeaderFilter = {
+  icon?: InputMaybe<GlobalHeaderIconFilter>;
+  color?: InputMaybe<StringFilter>;
+  nav?: InputMaybe<GlobalHeaderNavFilter>;
+};
+
+export type GlobalFooterSocialFilter = {
+  facebook?: InputMaybe<StringFilter>;
+  twitter?: InputMaybe<StringFilter>;
+  instagram?: InputMaybe<StringFilter>;
+  github?: InputMaybe<StringFilter>;
+};
+
+export type GlobalFooterFilter = {
+  color?: InputMaybe<StringFilter>;
+  social?: InputMaybe<GlobalFooterSocialFilter>;
+};
+
+export type GlobalThemeFilter = {
+  color?: InputMaybe<StringFilter>;
+  font?: InputMaybe<StringFilter>;
+  icon?: InputMaybe<StringFilter>;
+  darkMode?: InputMaybe<StringFilter>;
+};
+
+export type GlobalFilter = {
+  header?: InputMaybe<GlobalHeaderFilter>;
+  footer?: InputMaybe<GlobalFooterFilter>;
+  theme?: InputMaybe<GlobalThemeFilter>;
+};
+
 export type GlobalConnectionEdges = {
   __typename?: 'GlobalConnectionEdges';
   cursor?: Maybe<Scalars['String']>;
@@ -522,6 +452,11 @@ export type AuthorsDocument = Node & Document & {
   form: Scalars['JSON'];
   values: Scalars['JSON'];
   dataJSON: Scalars['JSON'];
+};
+
+export type AuthorsFilter = {
+  name?: InputMaybe<StringFilter>;
+  avatar?: InputMaybe<StringFilter>;
 };
 
 export type AuthorsConnectionEdges = {
@@ -611,6 +546,71 @@ export type PagesDocument = Node & Document & {
   dataJSON: Scalars['JSON'];
 };
 
+export type BooleanFilter = {
+  eq?: InputMaybe<Scalars['Boolean']>;
+  exists?: InputMaybe<Scalars['Boolean']>;
+};
+
+export type PagesBlocksHeroActionsFilter = {
+  label?: InputMaybe<StringFilter>;
+  type?: InputMaybe<StringFilter>;
+  icon?: InputMaybe<BooleanFilter>;
+  link?: InputMaybe<StringFilter>;
+};
+
+export type PagesBlocksHeroImageFilter = {
+  src?: InputMaybe<ImageFilter>;
+  alt?: InputMaybe<StringFilter>;
+};
+
+export type PagesBlocksHeroFilter = {
+  tagline?: InputMaybe<StringFilter>;
+  headline?: InputMaybe<StringFilter>;
+  text?: InputMaybe<RichTextFilter>;
+  actions?: InputMaybe<PagesBlocksHeroActionsFilter>;
+  image?: InputMaybe<PagesBlocksHeroImageFilter>;
+  color?: InputMaybe<StringFilter>;
+};
+
+export type PagesBlocksFeaturesItemsIconFilter = {
+  color?: InputMaybe<StringFilter>;
+  style?: InputMaybe<StringFilter>;
+  name?: InputMaybe<StringFilter>;
+};
+
+export type PagesBlocksFeaturesItemsFilter = {
+  icon?: InputMaybe<PagesBlocksFeaturesItemsIconFilter>;
+  title?: InputMaybe<StringFilter>;
+  text?: InputMaybe<StringFilter>;
+};
+
+export type PagesBlocksFeaturesFilter = {
+  items?: InputMaybe<PagesBlocksFeaturesItemsFilter>;
+  color?: InputMaybe<StringFilter>;
+};
+
+export type PagesBlocksContentFilter = {
+  body?: InputMaybe<RichTextFilter>;
+  color?: InputMaybe<StringFilter>;
+};
+
+export type PagesBlocksTestimonialFilter = {
+  quote?: InputMaybe<StringFilter>;
+  author?: InputMaybe<StringFilter>;
+  color?: InputMaybe<StringFilter>;
+};
+
+export type PagesBlocksFilter = {
+  hero?: InputMaybe<PagesBlocksHeroFilter>;
+  features?: InputMaybe<PagesBlocksFeaturesFilter>;
+  content?: InputMaybe<PagesBlocksContentFilter>;
+  testimonial?: InputMaybe<PagesBlocksTestimonialFilter>;
+};
+
+export type PagesFilter = {
+  blocks?: InputMaybe<PagesBlocksFilter>;
+};
+
 export type PagesConnectionEdges = {
   __typename?: 'PagesConnectionEdges';
   cursor?: Maybe<Scalars['String']>;
@@ -628,6 +628,7 @@ export type Mutation = {
   __typename?: 'Mutation';
   addPendingDocument: DocumentNode;
   updateDocument: DocumentNode;
+  deleteDocument: DocumentNode;
   createDocument: DocumentNode;
   updatePostsDocument: PostsDocument;
   createPostsDocument: PostsDocument;
@@ -651,6 +652,12 @@ export type MutationUpdateDocumentArgs = {
   collection?: InputMaybe<Scalars['String']>;
   relativePath: Scalars['String'];
   params: DocumentMutation;
+};
+
+
+export type MutationDeleteDocumentArgs = {
+  collection?: InputMaybe<Scalars['String']>;
+  relativePath: Scalars['String'];
 };
 
 
