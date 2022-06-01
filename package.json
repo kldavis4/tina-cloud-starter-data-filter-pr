@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "tinacms server:start -c \"next dev\"",
-    "dev-data": "tinacms server:start -c \"next dev\" --experimentalData",
+    "dev-data": "tinacms server:start -c \"next dev\" --experimentalData --tinaCloudMediaStore",
     "build": "tinacms server:start -c \"next build\"",
     "start": "tinacms server:start -c \"next start\"",
     "export": "npm run build && next export"
